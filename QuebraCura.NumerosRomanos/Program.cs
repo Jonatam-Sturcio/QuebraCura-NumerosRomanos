@@ -20,7 +20,6 @@ internal class Program
 				Console.WriteLine($"\n{digitado} = {numero}");
 			}
 
-
 			Console.ReadLine();
 			Console.Clear();
 		}
@@ -78,8 +77,20 @@ internal class Program
 
 	private static bool Validar(string digitado)
 	{
-		if (digitado.Contains("IIII") || digitado.Contains("XXXX") || digitado.Contains("CCCC") || digitado.Contains("MMMM"))
-			return false;
+		string regra = "IXM";
+		int ocorrencia;
+		for (int i = 0; i < 3; i++)
+		{
+			ocorrencia = 0;
+			for (int j = 0; j < digitado.Length; j++)
+			{
+				if (j + 1 < digitado.Length && (digitado[j] == regra[i] && digitado[j + 1] == regra[i]))
+					ocorrencia++;
+			}
+
+			if (ocorrencia > 2)
+				return false;
+		}
 
 		return true;
 	}
